@@ -116,7 +116,7 @@ The SQL query screenshots are stored in the `Screenshots` folder.
 
 **SQL Screenshot 2**
 
-![SQL Analysis Screenshot 2](Screenshots/SQLS%402.png)
+![SQL Analysis Screenshot 2](Screenshots/SQLS2.png)
 
 **SQL Screenshot 3**
 
@@ -151,7 +151,7 @@ Analyzes vehicle-category performance and ride distance.
 - Ride distance comparison across vehicle categories
 - Vehicle usage and booking patterns
 
-![Vehicle Dashboard](Screenshots/Vehicle.png)
+![Vehicle Dashboard](Screenshots/Vehicle%20Type.png)
 
 ### 3. Cancellation Analysis Dashboard
 
