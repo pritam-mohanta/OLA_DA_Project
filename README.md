@@ -1,280 +1,352 @@
-# 🚖 OLA Ride Booking Data Analytics Project | SQL, Excel & Power BI
+# OLA Ride Booking Data Analytics
 
-## 📌 Project Overview
+**SQL | Excel | Power BI | Data Analytics**
 
-This project focuses on analyzing OLA ride-booking data to uncover meaningful business insights related to ride performance, customer behavior, cancellations, revenue, vehicle preferences, and ratings.
+An end-to-end data analytics project analyzing OLA ride booking data to understand booking performance, customer behavior, cancellations, revenue, vehicle performance, and customer satisfaction.
 
-The project uses **SQL, Microsoft Excel, and Power BI** to perform data analysis, answer business questions, and build an interactive dashboard containing five report pages.
+---
 
-The analysis helps understand booking trends, identify cancellation patterns, evaluate vehicle performance, monitor customer satisfaction, and analyze revenue generated from successful rides.
+## Table of Contents
 
-## 🎯 Project Objectives
+- [About the Project](#about-the-project)
+- [Business Problem](#business-problem)
+- [Business Questions](#business-questions)
+- [Dataset Overview](#dataset-overview)
+- [Project Structure](#project-structure)
+- [Project Workflow](#project-workflow)
+- [SQL Analysis](#sql-analysis)
+- [Key Performance Indicators](#key-performance-indicators)
+- [Power BI Dashboard](#power-bi-dashboard)
+- [Dashboard Screenshots](#dashboard-screenshots)
+- [SQL Query Screenshots](#sql-query-screenshots)
+- [Key Insights](#key-insights)
+- [Business Recommendations](#business-recommendations)
+- [Tools and Technologies](#tools-and-technologies)
+- [Limitations](#limitations)
+- [Author](#author)
 
-- Analyze ride-booking trends over time.
-- Identify successful, cancelled, and incomplete bookings.
-- Understand customer and driver cancellation patterns.
-- Analyze ride distance across different vehicle types.
-- Identify the top customers based on ride frequency and booking value.
-- Evaluate customer and driver ratings.
-- Analyze revenue by payment method.
-- Build an interactive Power BI dashboard for business decision-making.
-- Solve real-world business questions using SQL in MySQL Workbench.
+---
 
-## 🛠️ Tools & Technologies
+## About the Project
 
-| Tool | Purpose |
+This project focuses on analyzing OLA ride booking data using SQL, Excel, and Power BI to identify business trends, evaluate operational performance, and generate actionable insights.
+
+The analysis covers booking trends, successful and cancelled rides, vehicle performance, customer behavior, revenue generation, ride distances, and customer and driver ratings.
+
+The project follows an end-to-end data analytics workflow, from data preparation and SQL analysis to KPI development and interactive dashboard creation.
+
+---
+
+## Business Problem
+
+Ride-booking businesses operate in a dynamic environment where booking success, cancellations, customer satisfaction, driver performance, and revenue directly influence business performance.
+
+The objective of this project is to analyze ride-booking data and identify patterns that can help the business:
+
+- Improve successful ride completion rates
+- Understand customer and driver cancellation patterns
+- Identify high-performing vehicle categories
+- Analyze revenue and payment trends
+- Evaluate customer and driver ratings
+- Improve operational efficiency
+- Support data-driven business decisions
+
+---
+
+## Business Questions
+
+The project addresses the following business questions:
+
+- What is the overall booking volume?
+- How many bookings were successfully completed?
+- What is the cancellation rate?
+- What are the primary reasons for customer and driver cancellations?
+- Which vehicle categories generate the highest ride distance?
+- Who are the top customers based on booking frequency and booking value?
+- What is the total revenue generated from successful rides?
+- Which payment methods are most frequently used?
+- How do customer ratings vary across vehicle categories?
+- What are the major reasons for incomplete rides?
+
+---
+
+## Dataset Overview
+
+The dataset contains ride-booking information, including booking details, customer information, vehicle categories, ride status, cancellation details, revenue, ride distance, and ratings.
+
+### Key Columns
+
+| Column | Description |
 |---|---|
-| MySQL Workbench | SQL queries, data analysis, and business problem-solving |
-| Microsoft Excel | Data inspection, cleaning, formatting, and preliminary analysis |
-| Microsoft Power BI | Interactive dashboards, KPIs, charts, and visual reporting |
-| GitHub | Project documentation, version control, and portfolio presentation |
+| Date | Booking date |
+| Time | Booking time |
+| Booking ID | Unique booking identifier |
+| Booking Status | Status of the booking |
+| Customer ID | Unique customer identifier |
+| Vehicle Type | Category of vehicle booked |
+| Pickup Location | Ride pickup location |
+| Drop Location | Ride destination |
+| Avg VTAT | Average Vehicle Time of Arrival |
+| Avg CTAT | Average Customer Time of Arrival |
+| Customer Cancellation | Customer cancellation indicator |
+| Customer Cancellation Reason | Reason for customer cancellation |
+| Driver Cancellation | Driver cancellation indicator |
+| Driver Cancellation Reason | Reason for driver cancellation |
+| Incomplete Rides | Incomplete ride indicator |
+| Incomplete Ride Reason | Reason for incomplete ride |
+| Booking Value | Value of the booking |
+| Ride Distance | Distance covered during the ride |
+| Customer Rating | Customer rating |
+| Driver Rating | Driver rating |
 
-## 📂 Dataset Description
+---
 
-The dataset contains OLA ride-booking information, including booking details, customer and driver information, vehicle categories, pickup and drop locations, ride timings, cancellation reasons, booking value, ride distance, and ratings.
-
-### Dataset Columns
-
-| No. | Column Name | Description |
-|---:|---|---|
-| 1 | Date | Date of the ride booking |
-| 2 | Time | Time of the ride booking |
-| 3 | Booking ID | Unique identifier for each booking |
-| 4 | Booking Status | Status of the booking |
-| 5 | Customer ID | Unique identifier for each customer |
-| 6 | Vehicle Type | Auto, Prime Plus, Prime Sedan, Mini, Bike, eBike, Prime SUV |
-| 7 | Pickup Location | Ride pickup area in Bangalore |
-| 8 | Drop Location | Ride destination selected from the location list |
-| 9 | AvgVTAT | Average time taken by the driver to arrive at the vehicle/pickup point |
-| 10 | Avg CTAT | Average time taken by the driver to arrive at the customer |
-| 11 | Cancelled Rides by Customer | Indicates customer-cancelled rides |
-| 12 | Reason for Cancelling by Customer | Customer cancellation reason |
-| 13 | Cancelled Rides by Driver | Indicates driver-cancelled rides |
-| 14 | Reason for Cancelling by Driver | Driver cancellation reason |
-| 15 | Incomplete Rides | Indicates rides that were not completed |
-| 16 | Incomplete Rides Reason | Reason for an incomplete ride |
-| 17 | Booking Value | Monetary value of the booking |
-| 18 | Ride Distance | Total distance travelled or recorded for the ride |
-| 19 | Driver Ratings | Rating provided for the driver |
-| 20 | Customer Rating | Rating provided by the customer |
-
-**Note:** The pickup and drop locations use dummy location points representing 50 areas in Bangalore. These locations are synthetic and are intended for analytical practice.
-
-### Cancellation Reasons
-
-**Customer cancellation reasons**
-- Driver is not moving towards the pickup location
-- Driver asked to cancel
-- AC is not working (four-wheelers only)
-- Change of plans
-- Wrong address
-
-**Driver cancellation reasons**
-- Personal & car-related issues
-- Customer-related issue
-- The customer was coughing/sick
-- More than permitted people in the vehicle
-
-**Incomplete ride reasons**
-- Customer demand
-- Vehicle breakdown
-- Other issue
-
-## 🔄 Project Workflow
-
-1. **Data Preparation:** Inspect the dataset, validate columns, check missing values, and prepare data types.
-2. **Excel Analysis:** Review the data, perform basic cleaning, and conduct preliminary analysis.
-3. **SQL Analysis:** Use MySQL Workbench to answer business questions with filtering, aggregation, grouping, sorting, and ranking.
-4. **Power BI Development:** Create measures, KPIs, charts, and interactive report pages.
-5. **Business Insights:** Interpret booking trends, revenue, cancellations, ratings, and vehicle performance.
-6. **Documentation:** Store SQL query screenshots and dashboard screenshots in GitHub.
-
-## 🗄️ SQL Analysis — MySQL Workbench
-
-The following 10 business questions were solved using SQL.
-
-| No. | Business Question | Analysis Objective |
-|---:|---|---|
-| 1 | Retrieve all successful bookings. | Identify completed and successful rides. |
-| 2 | Find the average ride distance for each vehicle type. | Compare distance performance by vehicle category. |
-| 3 | Get the total number of cancelled rides by customers. | Measure customer cancellation volume. |
-| 4 | List the top 5 customers who booked the highest number of rides. | Identify the most frequent customers. |
-| 5 | Get the number of rides cancelled by drivers due to personal and car-related issues. | Analyze driver-related cancellation patterns. |
-| 6 | Find the maximum and minimum driver ratings for Prime Sedan bookings. | Evaluate the rating range for Prime Sedan. |
-| 7 | Retrieve all rides where payment was made using UPI. | Analyze bookings paid through UPI. |
-| 8 | Find the average customer rating per vehicle type. | Compare customer satisfaction across vehicles. |
-| 9 | Calculate the total booking value of rides completed successfully. | Calculate revenue from successful rides. |
-| 10 | List all incomplete rides along with the reason. | Identify incomplete bookings and their causes. |
-
-### 📸 SQL Query Screenshots
-
-The SQL query screenshots are stored in the `Screenshots` folder.
-
-**SQL Screenshot 1**
-
-![SQL Analysis Screenshot 1](Screenshots/SQLS1.png)
-
-**SQL Screenshot 2**
-
-![SQL Analysis Screenshot 2](Screenshots/SQLS2.png)
-
-**SQL Screenshot 3**
-
-![SQL Analysis Screenshot 3](Screenshots/SQLS3.png)
-
-> Ensure the filenames in your repository match these image paths. If the second screenshot is named `SQLS2.png` rather than `SQLS@.png`, change the corresponding Markdown path to `Screenshots/SQLS2.png`.
-
-## 📊 Power BI Dashboard
-
-An interactive Power BI dashboard was developed to analyze booking performance, vehicle usage, cancellation behavior, revenue, and ratings.
-
-The dashboard contains **five report pages**.
-
-### 1. Overall Dashboard
-
-Provides a high-level overview of ride-booking performance and booking trends.
-
-**Key analysis**
-- Ride volume over time
-- Booking status breakdown
-- Overall booking performance
-- Top 5 vehicle types by ride distance
-
-![Overall Dashboard](Screenshots/Overall.png)
-
-### 2. Vehicle Analysis Dashboard
-
-Analyzes vehicle-category performance and ride distance.
-
-**Key analysis**
-- Top 5 vehicle types by ride distance
-- Ride distance comparison across vehicle categories
-- Vehicle usage and booking patterns
-
-![Vehicle Dashboard](Screenshots/Vehicle%20Type.png)
-
-### 3. Cancellation Analysis Dashboard
-
-Examines cancelled bookings and the reasons behind cancellations.
-
-**Key analysis**
-- Customer cancellation reasons
-- Driver cancellation reasons
-- Cancellation trends and patterns
-- Identification of common cancellation issues
-
-![Cancellation Dashboard](Screenshots/Cancellation.png)
-
-### 4. Revenue Analysis Dashboard
-
-Focuses on booking value and revenue-related business insights.
-
-**Key analysis**
-- Revenue by payment method
-- Top 5 customers by total booking value
-- Booking value analysis
-- Revenue contribution across payment categories
-
-![Revenue Dashboard](Screenshots/Revenue.png)
-
-### 5. Ratings Analysis Dashboard
-
-Evaluates customer satisfaction and driver performance.
-
-**Key analysis**
-- Average customer ratings by vehicle type
-- Driver ratings distribution
-- Customer ratings distribution
-- Customer versus driver ratings
-
-![Ratings Dashboard](Screenshots/Ratings.png)
-
-## 📈 Power BI Business Questions
-
-The following 10 business questions were addressed through dashboard visualizations.
-
-| No. | Business Question | Suggested Visualization |
-|---:|---|---|
-| 1 | Ride Volume Over Time | Line chart |
-| 2 | Booking Status Breakdown | Donut chart or bar chart |
-| 3 | Top 5 Vehicle Types by Ride Distance | Horizontal bar chart |
-| 4 | Average Customer Ratings by Vehicle Type | Column chart |
-| 5 | Cancelled Rides Reasons | Bar chart |
-| 6 | Revenue by Payment Method | Column or bar chart |
-| 7 | Top 5 Customers by Total Booking Value | Horizontal bar chart |
-| 8 | Ride Distance Distribution Per Day | Column chart or line chart |
-| 9 | Driver Ratings Distribution | Histogram or column chart |
-| 10 | Customer vs. Driver Ratings | Scatter chart |
-
-## 💡 Key Business Insights
-
-The project is designed to help stakeholders answer questions such as:
-
-- Which vehicle types contribute the most to total ride distance?
-- How does ride volume change over time?
-- What proportion of bookings are successful, cancelled, or incomplete?
-- What are the most common reasons for customer and driver cancellations?
-- Which customers generate the highest booking value?
-- Which payment methods contribute the most revenue?
-- Which vehicle categories receive the highest customer ratings?
-- How are driver ratings distributed?
-- Is there a relationship between customer ratings and driver ratings?
-- Which operational issues could be addressed to improve ride completion?
-
-*Actual findings should be added after reviewing the SQL query outputs and Power BI dashboard results.*
-
-## 📁 Repository Structure
+## Project Structure
 
 ```text
 OLA-Ride-Booking-Data-Analysis/
 │
 ├── Screenshots/
 │   ├── SQLS1.png
-│   ├── SQLS@.png
+│   ├── SQLS2.png
 │   ├── SQLS3.png
 │   ├── Overall.png
-│   ├── Vehicle.png
+│   ├── Vehicle Type.png
 │   ├── Cancellation.png
 │   ├── Revenue.png
 │   └── Ratings.png
 │
-├── README.md
+├── SQL/
+│   └── OLA_Ride_Booking_Analysis.sql
 │
-└── [Add your SQL scripts, Excel dataset, and Power BI file here]
+├── Dataset/
+│   └── OLA_Ride_Booking_Data.xlsx
+│
+├── Power BI/
+│   └── OLA_Ride_Booking_Analysis.pbix
+│
+└── README.md
 ```
 
-> The SQL scripts, Excel dataset, and Power BI file should be added to the repository if you want visitors to download and reproduce the analysis. The filenames shown in brackets are placeholders, not existing files.
+---
 
-## 🚀 How to Explore the Project
+## Project Workflow
 
-1. Clone or download this repository.
-2. Open the SQL scripts in MySQL Workbench and execute the queries against the prepared dataset.
-3. Open the Excel dataset to review the source data and cleaning steps.
-4. Open the Power BI `.pbix` file in Power BI Desktop.
-5. Explore the five dashboard pages and interact with the available filters and visuals.
-6. Review the screenshots to understand the SQL analysis and dashboard layout.
+### 1. Data Preparation
 
-## 🎓 Skills Demonstrated
+- Reviewed the dataset structure and available columns
+- Examined booking statuses and data consistency
+- Identified relevant fields for business analysis
+- Prepared data for analysis and visualization
 
-- SQL querying and business problem-solving
-- Data cleaning and preparation
-- Microsoft Excel data analysis
-- Data aggregation and KPI analysis
-- Power BI dashboard development
-- Data visualization and storytelling
-- Customer behavior analysis
-- Revenue and booking analysis
-- Cancellation and operational performance analysis
-- Analytical reporting and documentation
+### 2. Excel Analysis
 
-## 👨‍💻 Project Information
+- Explored booking data
+- Reviewed data patterns and distributions
+- Performed preliminary analysis
+- Supported data understanding and validation
 
-**Project:** OLA Ride Booking Data Analytics
+### 3. SQL Business Analysis
 
-**Domain:** Ride-Hailing / Transportation Analytics
+Used SQL to answer business questions related to booking performance, cancellations, vehicle categories, customer behavior, revenue, and ratings.
 
-**Tools:** MySQL Workbench, Microsoft Excel, Power BI, GitHub
+### 4. KPI Analysis
 
-**Project Type:** End-to-End Data Analytics Portfolio Project
+Developed key performance indicators to evaluate overall business performance.
 
+### 5. Power BI Dashboard Development
 
+Created an interactive dashboard to present business insights through visualizations, KPI cards, charts, and category-level comparisons.
+
+---
+
+## SQL Analysis
+
+The SQL analysis covers the following business queries:
+
+| Query | Business Question |
+|---|---|
+| Q1 | Retrieve all successful bookings |
+| Q2 | Calculate the average ride distance for each vehicle type |
+| Q3 | Calculate the total number of rides cancelled by customers |
+| Q4 | Identify the top 5 customers based on the number of bookings |
+| Q5 | Identify driver cancellations due to personal or car-related issues |
+| Q6 | Find the minimum and maximum driver ratings for Prime Sedan bookings |
+| Q7 | Calculate the number of bookings made using UPI |
+| Q8 | Calculate the average customer rating for each vehicle type |
+| Q9 | Calculate the total booking value of successfully completed rides |
+| Q10 | Identify incomplete rides and their associated reasons |
+
+---
+
+## Key Performance Indicators
+
+The dashboard includes the following KPIs:
+
+| KPI | Description |
+|---|---|
+| Total Bookings | Total number of ride bookings |
+| Successful Bookings | Number of successfully completed rides |
+| Cancelled Bookings | Number of cancelled rides |
+| Incomplete Rides | Number of rides that were not completed |
+| Total Booking Value | Total booking value generated |
+| Average Ride Distance | Average distance travelled per ride |
+| Average Customer Rating | Average rating given by customers |
+| Average Driver Rating | Average rating received by drivers |
+
+---
+
+## Power BI Dashboard
+
+The Power BI dashboard is divided into five analytical views.
+
+### 1. Overall Dashboard
+
+Provides an overview of ride-booking performance, including:
+
+- Total bookings
+- Successful bookings
+- Booking status distribution
+- Ride volume trends
+- Top 5 vehicle types by ride distance
+
+### 2. Vehicle Type Analysis
+
+Analyzes vehicle category performance through:
+
+- Ride distance by vehicle type
+- Vehicle category comparison
+- Booking distribution across vehicle categories
+
+### 3. Cancellation Analysis
+
+Focuses on ride cancellations through:
+
+- Customer cancellation analysis
+- Driver cancellation analysis
+- Cancellation reasons
+- Cancellation patterns
+
+### 4. Revenue Analysis
+
+Analyzes booking revenue and payment behavior through:
+
+- Booking value distribution
+- Revenue analysis
+- Payment method breakdown
+- Top 5 customers by booking value
+
+### 5. Ratings Analysis
+
+Evaluates customer and driver satisfaction through:
+
+- Customer ratings by vehicle type
+- Driver rating distribution
+- Customer rating distribution
+- Rating comparisons across vehicle categories
+
+---
+
+## Dashboard Screenshots
+
+### Overall Dashboard
+
+![Overall Dashboard](Screenshots/Overall.png)
+
+### Vehicle Type Analysis
+
+![Vehicle Type Dashboard](Screenshots/Vehicle%20Type.png)
+
+### Cancellation Analysis
+
+![Cancellation Dashboard](Screenshots/Cancellation.png)
+
+### Revenue Analysis
+
+![Revenue Dashboard](Screenshots/Revenue.png)
+
+### Ratings Analysis
+
+![Ratings Dashboard](Screenshots/Ratings.png)
+
+---
+
+## SQL Query Screenshots
+
+### SQL Analysis - 1
+
+![SQL Query Screenshot 1](Screenshots/SQLS1.png)
+
+### SQL Analysis - 2
+
+![SQL Query Screenshot 2](Screenshots/SQLS2.png)
+
+### SQL Analysis - 3
+
+![SQL Query Screenshot 3](Screenshots/SQLS3.png)
+
+---
+
+## Key Insights
+
+The analysis helps identify:
+
+- Booking performance and successful ride completion patterns
+- Customer and driver cancellation behavior
+- Vehicle category performance based on ride distance
+- Revenue contribution and payment preferences
+- Customer booking frequency and value contribution
+- Customer and driver satisfaction patterns
+- Major causes of incomplete rides
+
+These insights help understand the operational and business performance of a ride-booking platform.
+
+---
+
+## Business Recommendations
+
+Based on the analysis, the following recommendations can help improve business performance:
+
+- Improve successful ride completion by monitoring incomplete rides.
+- Reduce customer cancellations by identifying recurring cancellation reasons.
+- Improve driver operations by addressing frequent driver cancellation causes.
+- Optimize vehicle allocation based on demand and ride-distance patterns.
+- Focus on high-value and frequent customers to improve customer retention.
+- Monitor payment preferences to improve payment experience.
+- Improve customer satisfaction by tracking ratings across vehicle categories.
+- Use booking and revenue trends to support operational planning.
+
+---
+
+## Tools and Technologies
+
+- SQL
+- Microsoft Excel
+- Power BI
+- Data Analysis
+- Data Visualization
+- Business Intelligence
+
+---
+
+## Limitations
+
+- The analysis is limited to the columns and records available in the dataset.
+- Location information may not represent actual geographic coordinates.
+- Booking value represents booking-level revenue information and does not necessarily reflect profit.
+- The analysis does not include all operational factors, such as driver availability, traffic conditions, or real-time demand.
+- The findings should be interpreted within the context of the available dataset.
+
+---
+
+## Author
+
+**Samrat Mohanta**
+
+Data Analytics | SQL | Excel | Power BI | Python
+
+---
+
+**OLA Ride Booking Data Analytics**
+
+SQL | Excel | Power BI | Business Insights
