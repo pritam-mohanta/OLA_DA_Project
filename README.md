@@ -341,7 +341,7 @@ Based on the analysis, the following recommendations can help improve business p
 
 ## Author
 
-**Samrat Mohanta**
+**Pritam Mohanta**
 
 Data Analytics | SQL | Excel | Power BI | Python
 
